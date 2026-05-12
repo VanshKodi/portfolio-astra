@@ -2,22 +2,25 @@
 import Layout from "@layouts/Layout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import ProjectCard from "@components/ProjectCard.astro";
-
-let blogs = await Astro.glob("../pages/blog/*.mdx");
-
-blogs = blogs.sort(
-  (a, b) =>
-    new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
-);
-
 import * as chattgator from "../pages/project/chattgator.mdx";
 import * as digiwall from "../pages/project/digiwall.mdx";
 import * as twitterSupercharger from "../pages/project/twitter-supercharger.mdx";
 import * as studier from "../pages/project/studier.mdx";
 
-let projects = [chattgator, digiwall, twitterSupercharger, studier];
+const allPosts = import.meta.glob('../blog/*.mdx', { eager: true });
+const blogs = Object.values(allPosts)
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter,
+    url: post.url,
+  }))
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
+  )
+  .slice(0, 3);
 
-blogs = blogs.slice(0, 3);
+const projects = [chattgator, digiwall, twitterSupercharger, studier];
 
 const workExperience = [
   {
@@ -56,10 +59,10 @@ const workExperience = [
         <h1
           class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200 xl:text-5xl"
         >
-          Frontend developer, student, and a noob gamer.
+          Software Developer and an enthusiastic learner
         </h1>
         <p class="prose prose-zinc dark:prose-invert lg:prose-lg">
-          Hi, I'm Vatsal. A frontend developer, currently studying at Nirma
+          Hi, I'm Vansh. A software developer, currently studying at Nirma
           University. This is my personal website, where you will find all the
           stuff I am currently doing and thinking about. <a
             href="/about"
@@ -86,7 +89,7 @@ const workExperience = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/vatsal0601"
+            href="https://github.com/VanshKodi"
             aria-label="GitHub"
           >
             <svg

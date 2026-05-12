@@ -2,12 +2,19 @@
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 
-let blogs = await Astro.glob("../../pages/blog/*.mdx");
+const allPosts = import.meta.glob('../blog/*.mdx', { eager: true });
+let blogs = Object.values(allPosts);
 
-blogs = blogs.sort(
-  (a, b) =>
-    new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
-);
+blogs = blogs
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter,
+    url: post.url,
+  }))
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
+  );
 ---
 
 <Layout

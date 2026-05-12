@@ -2,12 +2,19 @@
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 
-let projects = await Astro.glob("../../pages/project/*.mdx");
+const allProjects = import.meta.glob('../project/*.mdx', { eager: true });
+let projects = Object.values(allProjects);
 
-projects = projects.sort(
-  (a, b) =>
-    new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
-);
+projects = projects
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter,
+    url: post.url,
+  }))
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.createdAt) - new Date(a.frontmatter.createdAt)
+  );
 ---
 
 <Layout
