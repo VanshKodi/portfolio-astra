@@ -2,12 +2,9 @@
 import Layout from "@layouts/Layout.astro";
 import BlogCard from "@components/BlogCard.astro";
 import ProjectCard from "@components/ProjectCard.astro";
-import * as chattgator from "../pages/project/chattgator.mdx";
-import * as digiwall from "../pages/project/digiwall.mdx";
-import * as twitterSupercharger from "../pages/project/twitter-supercharger.mdx";
-import * as studier from "../pages/project/studier.mdx";
+import { SITE, IMAGES, SOCIALS, WORK } from "@config/site";
 
-const allPosts = import.meta.glob('../blog/*.mdx', { eager: true });
+const allPosts = import.meta.glob('./blog/*.mdx', { eager: true });
 const blogs = Object.values(allPosts)
   .map((post) => ({
     ...post,
@@ -20,51 +17,32 @@ const blogs = Object.values(allPosts)
   )
   .slice(0, 3);
 
-const projects = [chattgator, digiwall, twitterSupercharger, studier];
-
-const workExperience = [
-  {
-    logo: "/images/misc/toddle.png",
-    name: "Toddle",
-    designation: "Associate Software Engineer",
-    from: "2023",
-    to: "current",
-  },
-  {
-    logo: "/images/misc/nlt.png",
-    name: "Nine Lights Technologies",
-    designation: "SDE Intern",
-    from: "2022",
-    to: "2022 (3 mo.)",
-  },
-  {
-    logo: "/images/misc/goodwind.png",
-    name: "GoodWind",
-    designation: "SDE Intern",
-    from: "2021",
-    to: "2021 (3 mo.)",
-  },
-];
+const allProjects = import.meta.glob('./project/*.mdx', { eager: true });
+const projects = Object.values(allProjects)
+  .map((post) => ({
+    ...post,
+    frontmatter: post.frontmatter,
+    url: post.url,
+  }))
+  .slice(0, 4);
 ---
 
 <Layout>
   <main class="container space-y-16 py-12 lg:space-y-24 lg:py-24">
     <section class="grid grid-cols-1 space-y-4 lg:grid-cols-2">
       <img
-        src="/images/misc/vatsal-2.jpg"
-        alt="Vatsal Sakariya"
+        src={IMAGES.profile}
+        alt={SITE.name}
         class="aspect-square h-32 rounded-full border-2 border-blue-600 object-cover p-1 shadow-lg dark:border-blue-400 sm:h-56 sm:p-2 lg:h-72 lg:place-self-center"
       />
       <div class="space-y-2 lg:space-y-4">
         <h1
           class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200 xl:text-5xl"
         >
-          Software Developer and an enthusiastic learner
+          {SITE.tagline}
         </h1>
         <p class="prose prose-zinc dark:prose-invert lg:prose-lg">
-          Hi, I'm Vansh. A software developer, currently studying at Nirma
-          University. This is my personal website, where you will find all the
-          stuff I am currently doing and thinking about. <a
+          {SITE.bio} <a
             href="/about"
             class="inline-flex items-center gap-1 font-medium text-blue-600 underline-offset-2 hover:decoration-2 dark:text-blue-400"
           >
@@ -89,7 +67,7 @@ const workExperience = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/VanshKodi"
+            href={SOCIALS.github}
             aria-label="GitHub"
           >
             <svg
@@ -108,7 +86,7 @@ const workExperience = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/vatsal-sakariya"
+            href={SOCIALS.linkedin}
             aria-label="LinkedIn"
           >
             <svg
@@ -129,7 +107,7 @@ const workExperience = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://twitter.com/vatsal0601"
+            href={SOCIALS.twitter}
             aria-label="Twitter"
           >
             <svg
@@ -150,7 +128,7 @@ const workExperience = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.instagram.com/vatsal_sakariya"
+            href={SOCIALS.instagram}
             aria-label="Instagram"
           >
             <svg
@@ -197,7 +175,7 @@ const workExperience = [
           </p>
           <div class="space-y-4">
             {
-              workExperience.map(({ logo, name, designation, from, to }) => (
+              WORK.map(({ logo, name, designation, from, to }) => (
                 <p class="flex items-center gap-2">
                   <span class="aspect-square w-10 flex-shrink-0 rounded-full border border-zinc-200 bg-zinc-50 p-0.5 dark:border-zinc-600 dark:bg-zinc-700 lg:w-12 lg:p-1">
                     <img

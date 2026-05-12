@@ -1,4 +1,6 @@
 ---
+import { SITE, IMAGES } from "@config/site";
+
 export interface Props {
   title?: string;
   description?: string;
@@ -7,10 +9,10 @@ export interface Props {
 }
 
 const {
-  title = "Vansh Kodinariya",
-  description = "Vansh Kodinariya's Portfolio",
-  keywords = "Vansh Kodinariya, Web Development, Portfolio, Projects, Blogs",
-  image = "https://vatsalsakariya.vercel.app/images/misc/vatsal-2.jpg",
+  title = SITE.title,
+  description = SITE.description,
+  keywords = SITE.keywords,
+  image = IMAGES.profile,
 } = Astro.props;
 ---
 
@@ -18,16 +20,16 @@ const {
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords} />
-  <meta name="author" content="Vansh Kodinariya" />
+  <meta name="author" content={SITE.author} />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" />
-  <meta property="og:site_name" content="Vansh Kodinariya" />
+  <meta property="og:site_name" content={SITE.title} />
   <meta property="og:title" content={title} />
   <meta property="og:type" content="article" />
-  <meta property="article:author" content="Vansh Kodinariya" />
-  <meta property="profile:first_name" content="Vansh" />
-  <meta property="profile:last_name" content="Sakariya" />
+  <meta property="article:author" content={SITE.author} />
+  <meta property="profile:first_name" content={SITE.firstName} />
+  <meta property="profile:last_name" content={SITE.lastName} />
   <meta property="article:section" content="Technology" />
   <meta property="article:tag" content={keywords} />
   <meta property="og:image" content={image} />
@@ -36,9 +38,9 @@ const {
   <meta property="og:description" content={description} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={image} />
-  <meta name="twitter:site" content="@vatsal0601" />
-  <meta name="twitter:creator" content="@vatsal0601" />
-  <meta property="og:url" content="https://vatsalsakariya.vercel.app" />
+  <meta name="twitter:site" content={SITE.twitterHandle} />
+  <meta name="twitter:creator" content={SITE.twitterHandle} />
+  <meta property="og:url" content={SITE.url} />
   <meta
     name="google-site-verification"
     content="rT8n5Cu4FDaSWq9htrL2nQnL8P_DzVdrqjmrvRCC9jY"

@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
+import { SITE } from "@config/site";
 
 const allProjects = import.meta.glob('../project/*.mdx', { eager: true });
 let projects = Object.values(allProjects);
@@ -18,8 +19,8 @@ projects = projects
 ---
 
 <Layout
-  title="Project - Vatsal Sakariya"
-  description="Vatsal Sakariya's projects"
+  title={`Project - ${SITE.name}`}
+  description={`${SITE.name}'s projects`}
   keywords="Portfolio, Web Development, Projects, Projects"
 >
   <main class="container space-y-2 py-12 lg:space-y-4 lg:py-24">

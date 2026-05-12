@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
+import { SITE } from "@config/site";
 
 const allPosts = import.meta.glob('../blog/*.mdx', { eager: true });
 let blogs = Object.values(allPosts);
@@ -18,8 +19,8 @@ blogs = blogs
 ---
 
 <Layout
-  title="Blog - Vatsal Sakariya"
-  description="Vatsal Sakariya's blogs"
+  title={`Blog - ${SITE.name}`}
+  description={`${SITE.name}'s blogs`}
   keywords="Portfolio, Web Development, Projects, Blogs"
 >
   <main class="container space-y-2 py-12 lg:space-y-4 lg:py-24">

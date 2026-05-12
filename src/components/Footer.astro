@@ -1,4 +1,6 @@
 ---
+import { SITE } from "@config/site";
+
 const pageLinks = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
@@ -24,7 +26,7 @@ const pageLinks = [
       }
     </div>
     <p class="text-xs font-light text-zinc-600 dark:text-zinc-400 lg:text-sm">
-      Made with <span class="text-red-600">&hearts;</span> by Vatsal Sakariya
+      Made with <span class="text-red-600">&hearts;</span> by {SITE.name}
     </p>
   </div>
 </footer>
