@@ -11,15 +11,15 @@ export const SITE = {
   aboutBio:
     "I'm a software developer currently living in Jamnagar, Gujarat, India. Right now I am an undergraduate student studying at Nirma University for my bachelor's degree in Computer Science and Engineering. I did my schooling at Jamnagar Airforce School. I love finding applications of AI in day to day life. In my spare time, I love being outdoors, going to the gym and travelling.",
   author: "Vansh Kodinariya",
-  twitterHandle: "@vatsal0601",
+  twitterHandle: "@",
 };
 
 export const SOCIALS = {
   github: "https://github.com/VanshKodi",
-  linkedin: "https://www.linkedin.com/in/vatsal-sakariya",
-  twitter: "https://twitter.com/vatsal0601",
-  instagram: "https://www.instagram.com/vatsal_sakariya",
-  email: "vsakariya8@gmail.com",
+  linkedin: "https://www.linkedin.com/in/",
+  twitter: "https://twitter.com/",
+  instagram: "https://www.instagram.com/",
+  email: "kodinariyavansh007@gmail.com",
 };
 
 export const IMAGES = {
